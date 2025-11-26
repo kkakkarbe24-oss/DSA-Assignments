@@ -1,19 +1,8 @@
-// queues_and_stacks.cpp
-// Single file containing:
-// 1) Simple queue (array) - menu driven
-// 2) Circular queue (array) - menu driven
-// 3) Interleave queue halves
-// 4) First non-repeating character using queue (streaming)
-// 5) Stack using (a) two queues and (b) one queue
-//
-// Compile: g++ -std=c++17 queues_and_stacks.cpp -O2 -o queues_and_stacks
+
 
 #include <bits/stdc++.h>
 using namespace std;
 
-/* =========================
-   1) Simple Queue (array)
-   ========================= */
 class SimpleQueue {
     int *A;
     int capacity;
@@ -59,9 +48,7 @@ public:
     }
 };
 
-/* =========================
-   2) Circular Queue (array)
-   ========================= */
+
 class CircularQueue {
     int *A;
     int capacity;
@@ -110,12 +97,6 @@ public:
     }
 };
 
-/* =========================
-   3) Interleave queue halves
-   Example: 4 7 11 20 5 9 -> 4 20 7 5 11 9
-   Works for even-sized queue. If odd, last element stays at end.
-   Implementation uses std::queue<int>.
-   ========================= */
 void interleaveQueue(queue<int> &q) {
     int n = (int)q.size();
     if (n <= 2) return;
@@ -133,12 +114,7 @@ void interleaveQueue(queue<int> &q) {
     q = move(res);
 }
 
-/* =========================
-   4) First non-repeating character using queue (stream of chars)
-   For each incoming char we output the current first non-repeating char or -1
-   Example input: a a b c (space separated) -> outputs: a -1 b b
-   Implementation: freq map + queue<char>
-   ========================= */
+
 vector<string> firstNonRepeatingChars(const vector<char>& inputs) {
     vector<string> result;
     unordered_map<char,int> freq;
@@ -156,15 +132,7 @@ vector<string> firstNonRepeatingChars(const vector<char>& inputs) {
     return result;
 }
 
-/* =========================
-   5a) Stack using two queues (push costly)
-   push(x):
-     enqueue x into q2
-     move all items from q1 to q2
-     swap(q1,q2)
-   pop():
-     dequeue from q1
-   ========================= */
+
 class StackTwoQueues {
     queue<int> q1, q2;
 public:
@@ -195,11 +163,6 @@ public:
     }
 };
 
-/* =========================
-   5b) Stack using one queue
-   push(x): enqueue x, then rotate (size-1) elements from front to back
-   pop(): dequeue
-   ========================= */
 class StackOneQueue {
     queue<int> q;
 public:
@@ -232,9 +195,7 @@ public:
     }
 };
 
-/* =========================
-   Menus & Helpers
-   ========================= */
+
 void simpleQueueMenu() {
     int cap;
     cout << "Enter capacity for simple queue (default 10): ";
